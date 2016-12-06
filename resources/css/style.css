@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+.addCarBtn{
+  width:100%;
+}
+
+.caption{
+  text-align:center;
+}
+
+.container{
+   margin-bottom:70px;
+}
+
+.footer{
+  text-align:center;
+  line-height:40px;
+}
