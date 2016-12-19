@@ -1,5 +1,6 @@
 <?php
 //admin login
+
 include '../src/config.php';
 $url_path=$config['url_path'];
 ?>
@@ -20,10 +21,10 @@ $url_path=$config['url_path'];
 
     <div class="container">
 
-      <form class="form-signin" role="form" action="index.php">
+        <form class="form-signin" role="form" action="">
         <h2 class="form-signin-heading">登录ZBL商城</h2>
-        <input type="text" class="form-control" placeholder="输入账号" required autofocus>
-        <input type="password" class="form-control" placeholder="输入密码" required>
+        <input type="text" name="username" id="username" class="form-control" placeholder="输入账号" required autofocus>
+        <input type="password" name="password" id="password" class="form-control" placeholder="输入密码" required>
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me">记住我
@@ -38,5 +39,31 @@ $url_path=$config['url_path'];
 <script type="text/javascript" src="<?php echo $url_path;?>plugins/flycar/js/jquery.fly.min.js"></script>
 <script type="text/javascript" src="<?php echo $url_path;?>plugins/navcar/js/nav.js"></script>
 <script type="text/javascript" src="<?php echo $url_path;?>plugins/layer/layer.js"></script>
+<script type="text/javascript">
+$(function(){
+   $('form').submit(function(){
+    var username=$('#username').val();
+    var password=$('#password').val();
+    $.ajax({
+        url:'<?php echo $url_path;?>src/admin_login.php',
+        type:'post',
+        data:{usernname:username,password:password},
+        beforeSend:function()
+        {
+           var index = layer.load(1, {
+                shade: [0.1,'#fff'] //0.1透明度的白色背景
+              });
+        },
+        success:function(data)
+        {
+            alert(data);
+        }
+
+        
+    });
+        
+    });   
+});
+</script>
   </body>
 </html>
