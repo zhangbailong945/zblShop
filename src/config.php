@@ -12,5 +12,6 @@ $config['db']=array(
   'host'=>'localhost',
   'username'=>'root',
   'userpassword'=>'root',
+  'dbname'=>'zblshop',
   'charset'=>'utf-8'
 );

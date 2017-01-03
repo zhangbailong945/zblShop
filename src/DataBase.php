@@ -70,6 +70,7 @@ class DataBase
        public function select($sql)
        {
 	        $result=mysql_query($sql,$this->conn);
+                $data=array();
 	        if($result&&mysql_num_rows($result)>0)
 	        {
 	           while($row=mysql_fetch_assoc($result))

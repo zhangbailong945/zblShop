@@ -1,5 +1,6 @@
 <?php
 //shop index
+include '../src/session.php';
 include '../src/config.php';
 $url_path=$config['url_path'];
 ?>
@@ -48,9 +49,19 @@ $url_path=$config['url_path'];
 			      </li>
 			      <li><a href="#">其他</a></li>
 			      <li class="dropdown">
-			        <a href="#" class="dropdown-toggle" data-toggle="dropdown">你还没有登录？ <b class="caret"></b></a>
-			        <ul class="dropdown-menu">
-			          <li><a href="login.php">登录</a></li>
+			        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <?php
+                                  if(!empty($_SESSION['user']))
+                                  {
+                                      echo $_SESSION['user'];
+                                  }
+                                  else
+                                  {
+                                      echo "你还没有登录？ ";
+                                  }
+                                ?> 
+                                <b class="caret"></b></a><ul class="dropdown-menu">
+			          <li><a href="<?php echo $url_path;?>/shop/login.php">登录</a></li>
 			          <li><a href="#">注册</a></li>
 			          <li><a href="#">我的订单</a></li>
 			        </ul>
