@@ -1,7 +1,14 @@
 <?php
 //admin
+include '../src/session.php';
 include '../src/config.php';
 $url_path=$config['url_path'];
+$admin=$_SESSION['admin'];
+if(empty($admin))
+{
+    header("Location: http://localhost/zblshop/admin/login.php");
+}
+
 ?>
 <html>
 <head>
@@ -31,7 +38,14 @@ $url_path=$config['url_path'];
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
-							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">admin<strong class="caret"></strong></a>
+							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                          <?php
+                                                          if(!empty($admin))
+                                                          {
+                                                            echo $admin;  
+                                                          }
+                                                          ?>
+                                                         <strong class="caret"></strong></a>
 							<ul class="dropdown-menu">
 								<li>
 									 <a href="#">个人信息</a>

@@ -30,7 +30,7 @@ $url_path=$config['url_path'];
             <input type="checkbox" value="remember-me">记住我
           </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+        <button class="btn btn-lg btn-primary btn-block" id="submit" type="button">登录</button>
       </form>
 
     </div> <!-- /container -->
@@ -41,25 +41,36 @@ $url_path=$config['url_path'];
 <script type="text/javascript" src="<?php echo $url_path;?>plugins/layer/layer.js"></script>
 <script type="text/javascript">
 $(function(){
-   $('form').submit(function(){
+   $('#submit').click(function(){
     var username=$('#username').val();
     var password=$('#password').val();
+    var index='';
     $.ajax({
         url:'<?php echo $url_path;?>src/admin_login.php',
-        type:'post',
-        data:{usernname:username,password:password},
+        type:'POST',
+        data:{username:username,password:password},
         beforeSend:function()
         {
-           var index = layer.load(1, {
+             index = layer.load(1, {
                 shade: [0.1,'#fff'] //0.1透明度的白色背景
               });
         },
         success:function(data)
         {
-            alert(data);
+            if(data==1)
+            {
+                location.href="<?php echo $url_path;?>admin/index.php";
+            }
+            else
+            {
+                layer.close(index);
+                layer.msg('账号或者密码有误！');
+            }
+        },
+        error:function(e)
+        {
+           layer.msg(""+e+"");
         }
-
-        
     });
         
     });   

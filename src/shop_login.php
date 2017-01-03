@@ -21,16 +21,15 @@ class shop_login{
     }
 }
 
-//if(!empty($_REQUEST['username'])&&!empty($_REQUEST['password']))
-if(1===1)
+if(!empty($_REQUEST['username'])&&!empty($_REQUEST['password']))
 {
   $dbconfig=$config['db'];
   $obj=new shop_login();
   
-  //$username=$_REQUEST['username'];
-  //$password=$_REQUEST['password'];  
-  $username='user1';
-  $password='123456';
+  $username=$_REQUEST['username'];
+  $password=$_REQUEST['password'];  
+  //$username='user1';
+  //$password='123456';
   $data=$obj->login($dbconfig,$username,$password);
   if(count($data)>0)
   {
